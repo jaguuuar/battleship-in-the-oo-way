@@ -31,6 +31,11 @@ __Instance Attributes__
 - data: list
 - description: list contains *Square* objects that make a *Ship* object
 
+* `is_sunk`
+- data: bool
+- description: Contains True if every *Square* object that makes a *ship* has an attribute *is_hit* set to True,
+otherwise contains False, default value is False
+
 __Instance methods__
 
 * ##### ` __init__(self, size, is_vertical, start_row, start_column) `
@@ -40,11 +45,6 @@ __Instance methods__
 * `build_ship(self, size)`
 
     Makes a string that simbolises a ship (based on provided size)
-
-* `is_sunk(self)`
-
-    Returns True if every *Square* object that makes a *ship* has an attribute *is_hit* set to True,
-    otherwise returns False
 
 * `__str__(self)`
 
