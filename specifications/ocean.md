@@ -27,15 +27,13 @@ __Instance methods__
 
 * `are_sunk(self)`
 
-    Fills the *board* with *Square* objects
+    Returns True if every *Ship* objects attributes *is_sunk* are set to True, otherwise returns False.
+    Default value is False.
 
 * `insert_ships(self)`
 
-    Fills the *board* with *Square* objects
+    Fills the *board* with *Ship* objects
 
-* `build_board(self)`
-
-    Fills the *board* with *Square* objects
 
 * `__str__(self)`
 

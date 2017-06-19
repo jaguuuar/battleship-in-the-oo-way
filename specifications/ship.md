@@ -46,6 +46,11 @@ __Instance methods__
 
     Makes a string that simbolises a ship (based on provided size)
 
+* `check_if_sunk(self, is_sunk)`
+
+    Returns True if every *Square* objects attributes *is_hit* are set to True, otherwise returns False.
+    Default value is False.
+    
 * `__str__(self)`
 
     Returns a formatted string (joined lists of squares that make a ship)
