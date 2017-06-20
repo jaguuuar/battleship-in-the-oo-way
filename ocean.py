@@ -8,12 +8,23 @@ class Ocean:
         self.board = []
 
     def build_board(self):
-        square = Square()
+
         board_row = []
+
+        # for i in range(10):
+        #     square = Square()
+        #     self.board.append(board_row)
+        #     #for i in range(1):
+        #     board_row.append(square)
+
+
         for i in range(10):
+            for j in range(10):
+                square = Square()
+                board_row.append(square)
+
             self.board.append(board_row)
-            #for i in range(1):
-            board_row.append(square)
+    
 
 
     def insert_ships(self, start_row, start_column, ship):

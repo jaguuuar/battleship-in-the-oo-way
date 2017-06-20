@@ -10,7 +10,7 @@ def main():
     ocean = Ocean()
     #ocean.make_hit(0,0)
     ocean.build_board()
-    ocean.make_hit(1,1)
+    ocean.make_hit(1,0)
     print(ocean)
 
 

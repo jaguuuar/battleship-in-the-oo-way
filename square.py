@@ -17,4 +17,4 @@ class Square:
             else:
                 return 'O'
         else:
-            return 'D'
+            return ' '
