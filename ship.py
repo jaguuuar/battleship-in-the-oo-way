@@ -1,3 +1,5 @@
+from square import Square
+
 class Ship:
 
     def __init__(self, size, is_vertical, start_row, start_column, is_sunk=False):
@@ -8,4 +10,7 @@ class Ship:
         self.squares = []
         self.is_sunk = is_sunk
 
-    
+    def build_ship(self, size):
+        square = Square()
+        for i in range(size):
+            self.squares.append(square(True))
