@@ -1,22 +1,15 @@
 from ship import Ship
 from square import Square
 
+
 class Ocean:
 
     def __init__(self):
-        #self.board = [[Square() for x in range(1, 11)] for y in range(1, 11)]
         self.board = []
 
     def build_board(self):
 
         board_row = []
-
-        # for i in range(10):
-        #     square = Square()
-        #     self.board.append(board_row)
-        #     #for i in range(1):
-        #     board_row.append(square)
-
 
         for i in range(10):
             for j in range(10):
@@ -26,13 +19,11 @@ class Ocean:
             self.board.append(board_row)
             board_row = []
 
-
     def insert_ships(self, start_row, start_column, ship):
         pass
 
     def make_hit(self, row, column):
         self.board[row][column].hit()
-
 
     def __str__(self):
         string_to_return = ""
@@ -45,18 +36,9 @@ class Ocean:
         line_between = "|" + "".join([ "+" if x%4 == 0  else "-" for x in range(1,len( joined_text)-1)]) +"|\n"
         string_to_return += "-" * len(label_vertical) + "\n"
         string_to_return += label_vertical + "\n"
-        # print("-" * len(label_vertical))
         string_to_return += line_between
         for i in range(len(a)):
             string_to_return += "| " + label_horizonal[i] + " | " + " | ".join(a[i]) + "  |\n"
             string_to_return += line_between
 
         return (string_to_return)
-
-        '''
-        x = ''
-        for i in self.board:
-            for elem in i:
-                x += str(elem)
-        return x
-        '''
