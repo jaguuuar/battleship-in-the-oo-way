@@ -14,3 +14,13 @@ class Ship:
         square = Square()
         for i in range(size):
             self.squares.append(square(True))
+
+    def check_if_sunk(self):
+        for square in self.squares:
+            if square.is_hit == False:
+                return False
+            else:
+                return True
+
+    def __str__(self):
+        pass
