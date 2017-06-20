@@ -4,16 +4,17 @@ from square import Square
 class Ocean:
 
     def __init__(self):
-        #self.board = [[Square() for x in range(1, 11)] for y in range(1, 11)]
         self.board = []
 
     def build_board(self):
-        square = Square()
         board_row = []
         for i in range(10):
+            for j in range(10):
+                square = Square()
+                board_row.append(square)
+
             self.board.append(board_row)
-            #for i in range(1):
-            board_row.append(square)
+            board_row = []
 
 
     def insert_ships(self, start_row, start_column, ship):
@@ -41,11 +42,3 @@ class Ocean:
             string_to_return += line_between
 
         return (string_to_return)
-
-        '''
-        x = ''
-        for i in self.board:
-            for elem in i:
-                x += str(elem)
-        return x
-        '''

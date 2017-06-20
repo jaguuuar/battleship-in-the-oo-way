@@ -1,8 +1,6 @@
 class Square:
 
     def __init__(self, ship=None, is_hit=False):
-        #self.row = row
-        #self.column = column
         self.ship = ship
         self.is_hit = is_hit
 
@@ -17,4 +15,4 @@ class Square:
             else:
                 return 'O'
         else:
-            return 'D'
+            return ' '
