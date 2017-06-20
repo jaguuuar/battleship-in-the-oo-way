@@ -9,11 +9,12 @@ class Ship:
         self.start_column = start_column
         self.squares = []
         self.is_sunk = is_sunk
+        self.build_ship(size)
 
     def build_ship(self, size):
-        square = Square()
+        square = Square(True)
         for i in range(size):
-            self.squares.append(square(True))
+            self.squares.append(square)
 
     def check_if_sunk(self):
         for square in self.squares:
@@ -22,5 +23,8 @@ class Ship:
             else:
                 return True
 
-    def __str__(self):
-        return ''.join(self.squares)
+    # def __str__(self):
+    #     xd = ''
+    #     for i in self.squares:
+    #         xd += str(i) + "|"
+    #     return xd
