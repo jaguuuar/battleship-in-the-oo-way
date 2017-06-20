@@ -1,0 +1,11 @@
+class Ship:
+
+    def __init__(self, size, is_vertical, start_row, start_column, is_sunk=False):
+        self.size = size
+        self.is_vertical = is_vertical
+        self.start_row = start_row
+        self.start_column = start_column
+        self.squares = []
+        self.is_sunk = is_sunk
+
+    
