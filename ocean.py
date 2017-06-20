@@ -24,7 +24,7 @@ class Ocean:
                 board_row.append(square)
 
             self.board.append(board_row)
-    
+            board_row = []
 
 
     def insert_ships(self, start_row, start_column, ship):
