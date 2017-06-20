@@ -23,6 +23,7 @@ class Ship:
             else:
                 return True
 
+
     # def __str__(self):
     #     xd = ''
     #     for i in self.squares:
