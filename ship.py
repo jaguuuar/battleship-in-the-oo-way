@@ -12,7 +12,7 @@ class Ship:
         self.build_ship(size)
 
     def build_ship(self, size):
-        square = Square(True, False)
+        square = Square(False, True)
         for i in range(size):
             self.squares.append(square)
 
@@ -23,12 +23,9 @@ class Ship:
             else:
                 return True
 
-    def __str__(self):
-        xd = ''
-        for i in self.squares:
-            if self.is_vertical:
-                xd += str(i) + "|" "\n"
-            else:
-                xd += str(i) + "|"
 
-        return xd
+    # def __str__(self):
+    #     xd = ''
+    #     for i in self.squares:
+    #         xd += str(i) + "|"
+    #     return xd
