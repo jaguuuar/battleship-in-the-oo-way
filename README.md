@@ -1,6 +1,42 @@
-# Battleship in the OOP way
+#  in the OOP way
 
 ## The story
+
+Game Objective
+
+The object of Battleship is to try and sink all of the other player's before they sink all of your ships. All of the other player's ships are somewhere on his/her board.  You try and hit them by calling out the coordinates of one of the squares on the board.  The other player also tries to hit your ships by calling out coordinates. Neither you nor the other player can see the other's board so you must try to guess where they are.
+
+Starting a New Game
+
+Each player places the 5 ships somewhere on their board. The board is a square with side's length equals 10 (spaces). The ships can only be placed vertically or horizontally. Diagonal placement is not allowed. No part of a ship may hang off the edge of the board.  Ships may not overlap each other.  No ships may be placed on another ship. Ships may not touch each other.
+
+The 5 ships are: Carrier (occupies 5 spaces), Battleship (4), Cruiser (3), Submarine (3), and Destroyer (2).
+
+You sets ships by enter ship's name, answer the question if it's horizontal and the number of space which it occupies. You can add only one ship of each kind.
+
+Once the guessing begins, the players may not move the ships.
+
+Playing the Game
+
+Player's take turns guessing by calling out the coordinates. The opponent responds with "hit" or "miss" as appropriate. Both players should mark their board with signs: 'X' for hit, 'O' for miss. For example, if you call out F6 and your opponent does not have any ship located at F6, your opponent would respond with "miss".  You record the miss F6 by placing a white peg on the lower part of your board at F6. Your opponent records the miss by placing.
+
+When all of the squares that one your ships occupies have been hit, the ship will be sunk. You should announce "hit and sunk".
+
+As soon as all of one player's ships have been sunk, the game ends.
+
+Based on: https://www.cs.nmsu.edu/~bdu/TA/487/brules.htm
+
+
+
+New requirements
+
+There should be three game modes: Single player (PvC), Multiplayer (Hot Seat), Simulation (CvC).
+There should be 3 difficulty levels (easy, medium, hard). Different levels should be different AI algorithms. AI should follow the same rules as human - AI cannot know player's ships' positions.
+Hard level should be really difficult - mentor should have huge problems to win during evaluation.
+Class krk 2016.1 should not implement or edit following classes: Ship, Square, Ocean, Player. It's 2017.1's responsibility. (We'll git blame you ;) )
+There should be a hall of fame feature ;)
+(*) If you're ambitious implement another game mode: Multiplayer over Internet.*
+(*) Add sound effects :)*
 
 ## Specification
 
