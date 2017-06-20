@@ -23,4 +23,4 @@ class Ship:
                 return True
 
     def __str__(self):
-        pass
+        return ''.join(self.squares)
