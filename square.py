@@ -13,8 +13,11 @@ class Square:
     def __str__(self):
         if self.is_hit:
             if self.ship is not None:
-                return 'X'
+                return 'Z'
             else:
                 return 'O'
         else:
-            return ' '
+            if self.ship is not None:
+                return 'S'
+            else:
+                return ' '

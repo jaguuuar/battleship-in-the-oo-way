@@ -2,18 +2,21 @@ from square import Square
 
 class Ship:
 
-    def __init__(self, size, is_vertical, start_row, start_column, is_sunk=False):
-        self.size = size
+    ship_types = {'Carrier': 5, 'Battleship': 4, 'Cruiser': 3, 'Submarine': 3, 'Destroyer': 2}
+
+    def __init__(self, ship_type, is_vertical, start_row, start_column, is_sunk=False):
+        self.ship_type = ship_type
+        self.size = Ship.ship_types[ship_type]
         self.is_vertical = is_vertical
-        self.start_row = start_row
-        self.start_column = start_column
+        self.starting_point = (start_row, start_column)
+        self.ending_point = self.calculate_ending_point()
         self.squares = []
         self.is_sunk = is_sunk
-        self.build_ship(size)
+        self.build_ship(self.size)
 
     def build_ship(self, size):
-        square = Square(True)
         for i in range(size):
+            square = Square(self, False)
             self.squares.append(square)
 
     def check_if_sunk(self):
@@ -22,6 +25,17 @@ class Ship:
                 return False
             else:
                 return True
+
+    def calculate_ending_point(self):
+        if self.is_vertical:
+            ending_column = self.starting_point[1] + self.size - 1
+            ending_point = (self.starting_point[0], ending_column)
+        else:
+            ending_row = self.starting_point[0] + self.size - 1
+            ending_point = (ending_row, self.starting_point[1])
+
+        return ending_point
+
 
 
     # def __str__(self):
