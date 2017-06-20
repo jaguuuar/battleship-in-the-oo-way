@@ -8,4 +8,7 @@ class Ship:
         self.squares = []
         self.is_sunk = is_sunk
 
-    
+    def build_shi(self, size):
+        square = Square
+        for i in range(size):
+            self.squares.append()

@@ -1,8 +1,6 @@
 class Square:
 
-    def __init__(self, row, column, is_ship_part, is_hit=False):
-        self.row = row
-        self.column = column
+    def __init__(self, is_ship_part, is_hit=False):
         self.is_ship_part = is_ship_part
         self.is_hit = is_hit
 
