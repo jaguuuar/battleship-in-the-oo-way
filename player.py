@@ -7,20 +7,24 @@ class Player:
     def __init__(self, name):
         self.name = name
         self.is_winner = False
-        self.sunk_ships = 0
+        self.enemy_sunk_ships = 0
         self.player_ships = []
 
 
     def sunk_ships_count(self, ship):
         if ship.is_sunk == True:
-            self.sunk_ships += 1
+            self.enemy_sunk_ships += 1
 
     def check_is_winner(self):
-        if self.sunk_ships == 2:
+        if self.enemy_sunk_ships == 2:
             self.is_winner = True
 
     def add_ship(self, ship):
         self.player_ships.append(ship)
+
+    def remove_ship(self, ship):
+        if ship.is_sunk:
+            self.player_ships.remove(ship)
 
 
     def __str__(self):

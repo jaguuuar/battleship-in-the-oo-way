@@ -29,7 +29,7 @@ def main():
     player1.add_ship(ship2)
 
     print(player1.player_ships)
-    print(player1.sunk_ships)
+    print(player1.enemy_sunk_ships)
 
 
     while not player1.is_winner:
@@ -42,9 +42,11 @@ def main():
             ship.check_if_sunk()
             player1.sunk_ships_count(ship)
             print(ship.is_sunk)
+            player1.remove_ship(ship)
             player1.check_is_winner()
             print(ocean)
-            print(player1.sunk_ships)
+            print(player1.enemy_sunk_ships)
+            print(player1.player_ships)
             print(player1)
 
 
