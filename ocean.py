@@ -41,6 +41,8 @@ class Ocean:
                     square_index += 1
             return True
 
+    
+
     def check_if_fits(self, ship):
         if int(ship.ending_point[0]) > 9 or int(ship.ending_point[1]) > 9:
             print("\nSadly, the ship won't fit here.")
