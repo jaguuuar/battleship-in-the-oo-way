@@ -10,15 +10,17 @@ class Player:
         self.ships = []
 
     def insert_ships(self, ocean):
-
+        #succesful_adding = False
         for ship, size in Ship.ship_types.items():
-            print(("Place {}, it has {} squares.").format(ship, size))
-            direction = self.get_ship_direction(ship)
-            row, col = self.get_ship_coordinates()
-            ship_to_insert = Ship(ship, direction, row, col)
-            ocean.insert_ship(ship_to_insert)
-            self.ships.append(ship_to_insert)
-            print(ocean)
+            succesful_adding = False
+            while not succesful_adding:
+                print(("Place {}, it has {} squares.").format(ship, size))
+                direction = self.get_ship_direction(ship)
+                row, col = self.get_ship_coordinates()
+                ship_to_insert = Ship(ship, direction, row, col)
+                succesful_adding = ocean.insert_ship(ship_to_insert)
+                self.ships.append(ship_to_insert)
+                print(ocean)
 
     def get_ship_direction(self, ship_name):
         possible_choices = ['V', 'H']

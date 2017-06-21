@@ -39,11 +39,11 @@ class Ocean:
                 for i in range(ship.starting_point[1], ship.starting_point[1] + ship.size):
                     self.board[ship.starting_point[0]][i] = ship_squares[square_index]
                     square_index += 1
-
+            return True
 
     def check_if_fits(self, ship):
         if int(ship.ending_point[0]) > 9 or int(ship.ending_point[1]) > 9:
-            print("Statek sie nie zmiesci :xD")
+            print("\nSadly, the ship won't fit here.")
             return False
 
         return True
@@ -69,7 +69,7 @@ class Ocean:
                     print("Tu leży statek")
                     return False
             except IndexError:
-                print("Sprawdzalem poza plansza ale to nie problem")
+                a = 1
 
         return True
 
@@ -94,7 +94,7 @@ class Ocean:
                     print("Tu leży statek")
                     return False
             except IndexError:
-                print("Sprawdzalem poza plansza ale to nie problem")
+                a = 1
 
         return True
 
