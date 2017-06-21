@@ -9,7 +9,7 @@ def main():
     #shipxD = Ship('Carrier', False, 0, 4)
     ocean = Ocean()
     #ocean.make_hit(0,0)
-    ocean.build_board()
+    #ocean.build_board()
     print(ocean)
     player = Player('Mati')
     player.insert_ships(ocean)

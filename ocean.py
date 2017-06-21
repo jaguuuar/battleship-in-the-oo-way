@@ -6,6 +6,7 @@ class Ocean:
 
     def __init__(self):
         self.board = []
+        Ocean.build_board(self)
 
     def build_board(self):
 
@@ -48,7 +49,7 @@ class Ocean:
 
     def check_if_fits(self, ship):
         if int(ship.ending_point[0]) > 9 or int(ship.ending_point[1]) > 9:
-            print("Statek sie nie zmiesci :xD")
+            print("Sadly, the ship won't fit here, place it again.")
             return False
 
         return True
@@ -65,16 +66,16 @@ class Ocean:
         for index in range(check_from_col, check_to_col + 1):
             try:
                 if self.board[ship.starting_point[0]][index].ship is not None:
-                    print("Tu leży statek")
+                    print("You can't place a ship here, it touches other ship!")
                     return False
                 elif self.board[check_from_row][index].ship is not None:
-                    print("Tu leży statek")
+                    print("You can't place a ship here, it touches other ship!")
                     return False
                 elif self.board[check_to_row][index].ship is not None:
-                    print("Tu leży statek")
+                    print("You can't place a ship here, it touches other ship!")
                     return False
             except IndexError:
-                print("Sprawdzalem poza plansza ale to nie problem")
+                a=1
 
         return True
 
