@@ -28,11 +28,12 @@ class Ship:
 
     def calculate_ending_point(self):
         if self.is_vertical:
-            ending_column = self.starting_point[1] + self.size - 1
-            ending_point = (self.starting_point[0], ending_column)
-        else:
             ending_row = self.starting_point[0] + self.size - 1
             ending_point = (ending_row, self.starting_point[1])
+        else:
+            ending_column = self.starting_point[1] + self.size - 1
+            ending_point = (self.starting_point[0], ending_column)
+
 
         return ending_point
 

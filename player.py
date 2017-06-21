@@ -7,29 +7,31 @@ class Player:
     def __init__(self, name):
         self.name = name
         self.is_winner = False
+        self.ships = []
 
-    def insert_ships(self):
-        ocean = Ocean()
+    def insert_ships(self, ocean):
 
         for ship, size in Ship.ship_types.items():
             print(("Place {}, it has {} squares.").format(ship, size))
-            direction = get_ship_direction(ship)
-            row, col = get_ship_coordinates()
+            direction = self.get_ship_direction(ship)
+            row, col = self.get_ship_coordinates()
             ship_to_insert = Ship(ship, direction, row, col)
             ocean.insert_ship(ship_to_insert)
+            self.ships.append(ship_to_insert)
+            print(ocean)
 
     def get_ship_direction(self, ship_name):
-        possible_choices = [1, 2]
-        direction_values = {1: True, 2: False}
+        possible_choices = ['V', 'H']
+        direction_values = {'V': True, 'H': False}
 
-        print("Choose 1 for Horizontal or 2 for Vertical.")
+        print("Choose 'H' for Horizontal or 'V' for Vertical.")
         direction = 0
 
         while direction not in possible_choices:
-            try:
-                direction = int(input(("Choose {} direction: ").format(ship_name)))
-            except ValueError:
-                print("Wrong choice!")
+                direction = input(("Choose {} direction: ").format(ship_name)).upper()
+
+                if direction not in possible_choices:
+                    print("Wrong choice!")
 
         return direction_values[direction]
 
@@ -47,11 +49,12 @@ class Player:
         POSSIBLE_COLUMNS = range(10)
 
         while row not in POSSIBLE_ROWS:
-            row = input('Choose row (A - J): ')
+            row = input('Choose row (A - J): ').upper()
+        row = coordinates_values[row]
 
         while col not in POSSIBLE_COLUMNS:
             try:
-                col = (int(input('Choose column (1-10)'))) - 1
+                col = (int(input('Choose column (1-10): '))) - 1
             except ValueError:
                 print("It's not a number!")
 
