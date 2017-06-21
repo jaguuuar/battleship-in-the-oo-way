@@ -15,9 +15,7 @@ class Square:
             else:
                 return 'O'
         else:
-            return ' '
-            '''if self.ship is not None:
+            if self.ship is not None:
                 return 'S'
             else:
                 return ' '
-            '''

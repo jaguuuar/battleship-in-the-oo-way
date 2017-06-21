@@ -7,11 +7,10 @@ class Player:
     def __init__(self, name):
         self.name = name
         self.is_winner = False
-        self.enemy_sunk_ships = 0
-        self.player_ships = []
+        self.ships = []
 
     def insert_ships(self, ocean):
-        #succesful_adding = False
+
         for ship, size in Ship.ship_types.items():
             succesful_adding = False
             while not succesful_adding:
@@ -20,7 +19,7 @@ class Player:
                 row, col = self.get_ship_coordinates()
                 ship_to_insert = Ship(ship, direction, row, col)
                 succesful_adding = ocean.insert_ship(ship_to_insert)
-                self.player_ships.append(ship_to_insert)
+                self.ships.append(ship_to_insert)
                 print(ocean)
 
     def get_ship_direction(self, ship_name):
@@ -62,24 +61,3 @@ class Player:
                 print("It's not a number!")
 
         return row, col
-
-    def sunk_ships_count(self, ship):
-        if ship.is_sunk == True:
-            self.enemy_sunk_ships += 1
-
-    def check_is_winner(self):
-        if self.enemy_sunk_ships == 2:
-            self.is_winner = True
-
-    def add_ship(self, ship):
-        self.player_ships.append(ship)
-
-    def remove_ship(self, ship):
-        if ship.is_sunk:
-            self.player_ships.remove(ship)
-
-    def __str__(self):
-        if self.is_winner:
-            return "you win"
-        else:
-            return "try again"

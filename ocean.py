@@ -22,13 +22,13 @@ class Ocean:
 
     def insert_ship(self, ship):
         ship_fits = self.check_if_fits(ship)
+
         ship_squares = ship.squares
         square_index = 0
-        
         if ship_fits:
             if ship.is_vertical:
                 if self.check_vertical_ship(ship):
-                    # INSERTING ON BOARD
+                # INSERTING ON BOARD
                     for i in range(ship.starting_point[0], ship.starting_point[0] + ship.size):
                         self.board[i][ship.starting_point[1]] = ship_squares[square_index]
                         square_index += 1
@@ -37,7 +37,7 @@ class Ocean:
 
             else:
                 if self.check_horizontal_ship(ship):
-                    # INSERTING ON BOARD
+                # INSERTING ON BOARD
                     for i in range(ship.starting_point[1], ship.starting_point[1] + ship.size):
                         self.board[ship.starting_point[0]][i] = ship_squares[square_index]
                         square_index += 1
@@ -46,10 +46,9 @@ class Ocean:
             return True
 
 
-
     def check_if_fits(self, ship):
         if int(ship.ending_point[0]) > 9 or int(ship.ending_point[1]) > 9:
-            print("\nSadly, the ship won't fit here.")
+            print("Statek sie nie zmiesci :xD")
             return False
 
         return True
@@ -75,7 +74,7 @@ class Ocean:
                     print("Tu leży statek")
                     return False
             except IndexError:
-                a = 1
+                print("Sprawdzalem poza plansza ale to nie problem")
 
         return True
 
@@ -90,17 +89,17 @@ class Ocean:
 
         for index in range(check_from_row, check_to_row + 1):
             try:
-                if self.board[ship.starting_point[1]][index].ship is not None:
+                if self.board[index][ship.starting_point[1]].ship is not None:
                     print("Tu leży statek")
                     return False
-                elif self.board[check_from_col][index].ship is not None:
+                elif self.board[index][check_from_col].ship is not None:
                     print("Tu leży statek")
                     return False
-                elif self.board[check_to_col][index].ship is not None:
+                elif self.board[index][check_to_col].ship is not None:
                     print("Tu leży statek")
                     return False
             except IndexError:
-                a = 1
+                print("Sprawdzalem poza plansza ale to nie problem")
 
         return True
 
