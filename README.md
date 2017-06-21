@@ -228,3 +228,15 @@ __Instance methods__
 * ##### ` __init__(self, name) `
 
   Constructs a *Player* object
+
+* `insert_ships(self)`
+
+    Inserts every player's *Ship* objects on attribute self.board in *Ocean*
+
+* `get_ship_direction(self, ship_name)`
+
+    Basing on user input, returns True if attribute *is_vertical of *Ship* object will be True, otherwise returns False
+
+* `get_ship_coordinates(self, ship_name)`
+
+    Basing on user input, returns *Ship* starting_point.
