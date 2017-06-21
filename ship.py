@@ -25,7 +25,7 @@ class Ship:
                 self.is_sunk = False
             else:
                 self.is_sunk = True
-
+        
     def calculate_ending_point(self):
         if self.is_vertical:
             ending_row = self.starting_point[0] + self.size - 1

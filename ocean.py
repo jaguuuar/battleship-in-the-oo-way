@@ -22,9 +22,9 @@ class Ocean:
 
     def insert_ship(self, ship):
         ship_fits = self.check_if_fits(ship)
-
         ship_squares = ship.squares
         square_index = 0
+        
         if ship_fits:
             if ship.is_vertical:
                 self.check_vertical_ship(ship)
