@@ -22,9 +22,9 @@ class Ship:
     def check_if_sunk(self):
         for square in self.squares:
             if square.is_hit == False:
-                return False
+                self.is_sunk = False
             else:
-                return True
+                self.is_sunk = True
 
     def calculate_ending_point(self):
         if self.is_vertical:
