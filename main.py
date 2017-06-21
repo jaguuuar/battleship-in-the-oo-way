@@ -1,6 +1,7 @@
 from square import Square
 from ship import Ship
 from ocean import Ocean
+from player import Player
 
 
 def main():
@@ -25,6 +26,8 @@ def main():
     #ocean.make_hit(1,9)
 
     print(ocean)
+    player = Player('Mati')
+    player.insert_ships()
 
 
 if __name__ == '__main__':
