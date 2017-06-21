@@ -22,15 +22,23 @@ class Ocean:
 
     def insert_ship(self, ship):
         self.check_if_fits(ship)
-        if ship.is_vertical:
-            self.check_vertical_ship(ship)
-        else:
-            self.check_horizontal_ship(ship)
+
         ship_squares = ship.squares
         square_index = 0
-        for i in range(ship.starting_point[1], ship.starting_point[1] + ship.size):
-            self.board[ship.starting_point[0]][i] = ship_squares[square_index]
-            square_index += 1
+
+        if ship.is_vertical:
+            self.check_vertical_ship(ship)
+            # INSERTING ON BOARD
+            for i in range(ship.starting_point[0], ship.starting_point[0] + ship.size):
+                self.board[i][ship.starting_point[1]] = ship_squares[square_index]
+                square_index += 1
+
+        else:
+            self.check_horizontal_ship(ship)
+            # INSERTING ON BOARD
+            for i in range(ship.starting_point[1], ship.starting_point[1] + ship.size):
+                self.board[ship.starting_point[0]][i] = ship_squares[square_index]
+                square_index += 1
 
 
     def check_if_fits(self, ship):

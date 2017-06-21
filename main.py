@@ -14,7 +14,7 @@ def main():
     print(ocean)
     row = int(input("ROW: "))
     col = int(input("COL: "))
-    ship2 = Ship('Cruiser', False, row, col)
+    ship2 = Ship('Cruiser', True, row, col)
     ocean.check_if_fits(ship2)
     if ocean.check_horizontal_ship(ship2) and ocean.check_if_fits(ship2):
         ocean.insert_ship(ship2)
