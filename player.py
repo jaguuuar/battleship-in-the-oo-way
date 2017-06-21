@@ -13,8 +13,10 @@ class Player:
 
         for ship, size in Ship.ship_types.items():
             print(("Place {}, it has {} squares.").format(ship, size))
-            directions = get_ship_direction(ship)
+            direction = get_ship_direction(ship)
             row, col = get_ship_coordinates()
+            ship_to_insert = Ship(ship, direction, row, col)
+            ocean.insert_ship(ship_to_insert)
 
     def get_ship_direction(self, ship_name):
         possible_choices = [1, 2]
