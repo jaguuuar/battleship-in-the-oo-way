@@ -26,7 +26,6 @@ class Player:
         if ship.is_sunk:
             self.player_ships.remove(ship)
 
-
     def __str__(self):
         if self.is_winner:
             return "you win"

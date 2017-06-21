@@ -16,13 +16,13 @@ def main():
     #row = int(input("ROW: "))
     #col = int(input("COL: "))
     ship1 = Ship('Carrier', False, int(input("ROW: ")) , int(input("COL: ")))
-    ocean.check_if_fits(ship1)
-    if ocean.check_horizontal_ship(ship1) and ocean.check_if_fits(ship1):
+    #ocean.check_if_fits(ship1)
+    if ocean.check_horizontal_ship(ship1): #and ocean.check_if_fits(ship1):
         ocean.insert_ship(ship1)
 
     ship2 = Ship('Cruiser', True, int(input("ROW: ")), int(input("COL: ")))
-    ocean.check_if_fits(ship2)
-    if ocean.check_horizontal_ship(ship2) and ocean.check_if_fits(ship2):
+    #ocean.check_if_fits(ship2)
+    if ocean.check_horizontal_ship(ship2): #and ocean.check_if_fits(ship2):
         ocean.insert_ship(ship2)
     print(ocean)
     player1.add_ship(ship1)

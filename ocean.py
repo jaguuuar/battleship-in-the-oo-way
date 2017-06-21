@@ -21,7 +21,7 @@ class Ocean:
 
 
     def insert_ship(self, ship):
-        self.check_if_fits(ship)
+        #self.check_if_fits(ship)
 
         ship_squares = ship.squares
         square_index = 0
