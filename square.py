@@ -14,6 +14,16 @@ class Square:
     def change_square_look(self):
         self.in_game_look = True
 
+    def is_ship(self):
+        '''
+        If Square object is a part of Ship - return True,
+        otherwise return false
+        '''
+        if self.ship is not None:
+            return True
+        else:
+            return False
+
     def __str__(self):
         '''
         During inserting *Ship* objects
