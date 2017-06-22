@@ -11,6 +11,9 @@ class Square:
         '''
         self.is_hit = True
 
+    def change_square_look(self):
+        self.in_game_look = True
+
     def __str__(self):
         # TODO:
         '''

@@ -100,7 +100,7 @@ class Ocean:
                     print("Tu leży statek")
                     return False
             except IndexError:
-                print("Sprawdzalem poza plansza ale to nie problem")
+                a = 1
 
         return True
 
