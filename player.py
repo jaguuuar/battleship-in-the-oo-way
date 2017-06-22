@@ -12,11 +12,12 @@ class Player:
         self.enemy_sunk_ships = 0
 
     def insert_ships(self, ocean):
-        os.system("clear")
+
+        print('{} place your ships!\n'.format(self.name))
         for ship, size in Ship.ship_types.items():
             succesful_adding = False
             while not succesful_adding:
-                print(("Place {}, it has {} squares.").format(ship, size))
+                print(("Place {}, it has {} squares.\n").format(ship, size))
                 direction = self.get_ship_direction(ship)
                 coordinates = self.get_ship_coordinates()
                 converted_coordinates = self.convert_coordinates(coordinates)
@@ -24,6 +25,7 @@ class Player:
                 succesful_adding = ocean.insert_ship(ship_to_insert)
                 if succesful_adding:
                     self.ships.append(ship_to_insert)
+                os.system("clear")
                 print(ocean)
 
     def get_ship_direction(self, ship_name):
@@ -87,13 +89,18 @@ class Player:
 
 
     def sunk_ships_count(self):
+
         for ship in self.ships:
+            ship.check_if_sunk()
             if ship.is_sunk:
                 self.enemy_sunk_ships += 1
-                
+                self.ships.remove(ship)
+        return self.enemy_sunk_ships
+
+
 
     def check_is_winner(self):
-        if self.enemy_sunk_ships == 2:
+        if self.enemy_sunk_ships == 5:
             self.is_winner = True
 
 
