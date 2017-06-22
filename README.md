@@ -221,6 +221,14 @@ __Instance Attributes__
   - data: string
   - description: Player's name
 
+* `ships`
+- data: list
+- description: list with Player's ships
+
+* `enemy_sunk_ships`
+  - data: int
+  - description: number of enemy player sunk ships
+
 * `is_winner`
 - data: bool
 - description: contains True if every *Ship* object's attribute *is_sunk* is set to True, otherwise contains False. Default value is False
@@ -240,6 +248,26 @@ __Instance methods__
 
     Basing on user input, returns True if attribute *is_vertical of *Ship* object will be True, otherwise returns False
 
-* `get_ship_coordinates(self, ship_name)`
+* `get_ship_coordinates(self)`
 
-    Basing on user input, returns *Ship* starting_point.
+    Basing on user input, returns tuple with coordinates (str, int) *Ship* point.
+
+* `convert_coordinates(self, coordinates)`
+
+    Basing on user coordinates, returns tuple with converted coordinates (str, int) *Ship* point.
+
+* `sunk_ships_count(self)`
+
+    Couting *Ship* object if its sunk.
+
+* `check_is_winner(self)`
+
+    If all *Ships* are sunk *is_winner* is set to True, otherwise contains False. Default value is False.
+
+* `add_ship(self, ship)`
+
+    Add *Ship* object to list *ships*.
+
+* ` __str__(self)`
+
+    Returns information "you win" if *is_winner* is set to True.
