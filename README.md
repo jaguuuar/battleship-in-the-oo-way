@@ -150,12 +150,15 @@ __Instance methods__
 
 * `check_if_sunk(self)`
 
-    Returns True if every *Square* objects attributes *is_hit* are set to True, otherwise returns False.
+    Check if every *Square* object that *Ship* consists of has
+    *is_hit* attribute set to True, if that happens, *is_sunk* attribute
+    of *Ship* is marked as True
     Default value is False.
 
-* `__str__(self)`
+* `calculate_ending_point(self)`
 
-    Returns a formatted string (joined lists of squares that make a ship)
+    Basing on *Ship.starting_point* (tuple of 2 ints), calculates its ending
+    point and returns it
 
 
 __ocean.py__

@@ -33,28 +33,32 @@ class Ship:
             square = Square(self, False)
             self.squares.append(square)
 
-    def check_if_sunk(self, size):
+    def check_if_sunk(self):
         '''
-
-        Parameters
-        ----------
-        None
-        Returns
-        -------
-        boolean
+        Check if every Square object that Ship consists of has
+        is_hit attribute set to True, if that happens, is_sunk attribute
+        of Ship is marked as True
         '''
         temp_list = []
         for square in self.squares:
-
-            if square.is_hit is False:
-                self.is_sunk = False
-
-            else:
+            if square.is_hit:
                 temp_list.append('Hit')
         if len(temp_list) == self.size:
                 self.is_sunk = True
 
     def calculate_ending_point(self):
+        '''
+        Basing on Ship.starting_point (tuple of 2 ints), calculates its ending
+        point and returns it
+
+        Parameters
+        ---------
+        None
+
+        Returns
+        -------
+        ending_point = tuple of 2 ints
+        '''
         if self.is_vertical:
             ending_row = self.starting_point[0] + self.size - 1
             ending_point = (ending_row, self.starting_point[1])
@@ -62,13 +66,4 @@ class Ship:
             ending_column = self.starting_point[1] + self.size - 1
             ending_point = (self.starting_point[0], ending_column)
 
-
         return ending_point
-
-
-
-    # def __str__(self):
-    #     xd = ''
-    #     for i in self.squares:
-    #         xd += str(i) + "|"
-    #     return xd
