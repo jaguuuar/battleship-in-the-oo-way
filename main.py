@@ -4,109 +4,100 @@ import os
 
 
 def main():
+    print('\nWelcome to the Battleship game!')
+    name = input("\nName of player no.1: ")
+    name2 = input("Name of player no.2: ")
+    game = Hotseat(name, name2)
+    player1 = game.player
+    player2 = game.player2
 
-    print("\nChoose game type:\n 1: Hotseat\n 2: With PC\n")
-    game_type = input("Enter game type: ")
-    ## 1 - > Hot-Seat, ##
-    if game_type == "1":
-        name = input("\nName of player no.1: ")
-        name2 = input("Name of player no.2: ")
-        game = Hotseat(name, name2)
-        player1 = game.player
-        player2 = game.player2
+    # Filling boards
+    print(game.board)
+    player1.insert_ships(game.board)
+    for item in game.board.board:
+        for square in item:
+            square.change_square_look()
+    os.system("clear")
 
-        ## Filling boards ##
-        print(game.board)
-        player1.insert_ships(game.board)
-        for item in game.board.board:
-            for square in item:
-                square.change_square_look()
+    input("{}, press key to continue".format(name2))
+    print(game.board)
+    player2.insert_ships(game.board2)
+    for item in game.board2.board:
+        for square in item:
+            square.change_square_look()
+
+    os.system("clear")
+
+    while not player1.is_winner or not player2.is_winner:
         os.system("clear")
+        hit = True
 
+        while hit:
+            sunk_ships1 = player2.sunk_ships_count()
 
-        input("{}, press key to continue".format(name2))
-        print(game.board)
-        player2.insert_ships(game.board2)
-        for item in game.board2.board:
-            for square in item:
-                square.change_square_look()
+            print_before_shot_info(name, name2)
+            print(game.board2)
+            row, col = get_shot_coordinates()
+            hit = make_a_shot_player1(row, col, game, player1)
 
-        os.system("clear")
+            if hit:
 
-        while not player1.is_winner or not player2.is_winner:
-            os.system("clear")
-            hit = True
+                sunk_ships1_check = player2.sunk_ships_count()
 
-            while hit:
-                sunk_ships1 = player2.sunk_ships_count()
+                if sunk_ships1_check > sunk_ships1:
+                    print('\nYou destroyed whole ship!')
+                else:
+                    print("\nYou hit a ship!")
+                player2.check_is_winner()
 
-                print_before_shot_info(name, name2)
-                print(game.board2)
-                row, col = get_shot_coordinates()
-                hit = make_a_shot_player1(row, col, game, player1)
+                if player2.is_winner:
+                    print("{} win".format(name))
+                    exit()
+        os.system('clear')
+        print("You've missed")
+        input('{} has to play now. Press any key'.format(name2))
+        hit = True
 
-                if hit:
+        while hit:
+            sunk_ships2 = player1.sunk_ships_count()
+            print_before_shot_info(name2, name)
+            print(game.board)
+            row, col = get_shot_coordinates()
+            hit = make_a_shot_player2(row, col, game, player2)
 
-                    sunk_ships1_check = player2.sunk_ships_count()
+            if hit:
 
-                    if sunk_ships1_check > sunk_ships1:
-                        print('You destroyed whole ship!')
-                    else:
-                        print("You hit a ship!")
-                    player2.check_is_winner()
+                sunk_ships2_check = player1.sunk_ships_count()
 
-                    if player2.is_winner:
-                        print("{} win".format(name))
-                        exit()
+                if sunk_ships2_check > sunk_ships2:
+                    print('\nYou destroyed whole ship!')
+                else:
+                    print("\nYou hit a ship!")
+                player1.check_is_winner()
 
-            print("You've missed")
-            hit = True
+                player1.check_is_winner()
 
+                if player1.is_winner:
+                    print("{} win".format(name2))
+                    exit()
 
+        print("You've missed")
+        input('{} has to play now. Press any key'.format(name))
+        hit = True
 
-            while hit:
-                sunk_ships2 = player1.sunk_ships_count()
-                print(sunk_ships2)
-                print_before_shot_info(name2, name)
-                print(game.board)
-                row, col = get_shot_coordinates()
-                hit = make_a_shot_player2(row, col, game, player2)
-
-                if hit:
-                    #sunk_ships_check = player2.sunk_ships_count()
-                    #if sunk_ships_check > sunk_ships:
-                        #print('You destroyed whole ship!')
-                    #else:
-                    print("You hit a ship!")
-
-                    print(player1.sunk_ships_count())
-                    player1.check_is_winner()
-
-                    if player1.is_winner:
-                        print("{} win".format(name2))
-                        exit()
-
-
-            print("You've missed")
-            hit = True
-
-
-    else:
-        print("PC WON")
 
 def make_a_shot_player1(row, col, game, player):
 
     coordinates = player.convert_coordinates((row, col))
     hit = game.board2.make_hit(coordinates[0], coordinates[1])
-    print(game.board2)
 
     return hit
+
 
 def make_a_shot_player2(row, col, game, player):
 
     coordinates = player.convert_coordinates((row, col))
     hit = game.board.make_hit(coordinates[0], coordinates[1])
-    print(game.board)
 
     return hit
 
