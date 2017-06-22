@@ -1,21 +1,32 @@
 class Square:
 
-    def __init__(self, ship=None, is_hit=False):
+    def __init__(self, ship=None, is_hit=False, in_game_look=False):
         self.ship = ship
         self.is_hit = is_hit
-
+        self.in_game_look = in_game_look
 
     def hit(self):
+        '''
+        Marks attribute is_hit of Square object as True
+        '''
         self.is_hit = True
 
     def __str__(self):
-        if self.is_hit:
-            if self.ship is not None:
-                return 'Z'
+        # TODO:
+        '''
+        Returns 'X' if is_hit attribute of Square object is True,
+        otherwise returns ' ' (empty string)
+        '''
+        if self.in_game_look:
+            if self.is_hit:
+                if self.ship is not None:
+                    return 'X'
+                else:
+                    return 'O'
             else:
-                return 'O'
+                return ' '
         else:
             if self.ship is not None:
-                return 'S'
+                return 'X'
             else:
                 return ' '

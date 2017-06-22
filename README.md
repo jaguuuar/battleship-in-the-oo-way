@@ -70,26 +70,19 @@ This is the file containing a logic of squares (single pieces of ship)
 
 __Instance Attributes__
 
-* `row`
-  - data: int
-  - description: row coordinate
-
-* `column`
-- data: int
-- description: column coordinate
-
 * `is_hit`
   - data: bool
   - description: contains True if square was hit, otherwise contains False
   Default value is False
 
-* `is_ship_part`
-- data: bool
-- description: contains True if square is a part of a ship, otherwise contains False (if is a part of board)
+* `ship`
+- data: string/None
+- description: contains ship's *name* if is a part of *Ship*, otherwise contains None
+    Default value is None.
 
 __Instance methods__
 
-* ##### ` __init__(self, row, column) `
+* ##### ` __init__(self, ship, is_hit) `
 
   Constructs a *Square* object
 
@@ -146,22 +139,26 @@ otherwise contains False, default value is False
 
 __Instance methods__
 
-* ##### ` __init__(self, size, is_vertical, start_row, start_column) `
+* ##### ` __init__(self, ship_type, is_vertical, start_row, start_column, is_sunk) `
 
   Constructs a *Ship* object
 
 * `build_ship(self, size)`
 
-    Makes a string that simbolises a ship (based on provided size)
+    Basing on provided *size*, construct a ship, by appending *Square* objects
+    to *self.squares* list
 
-* `check_if_sunk(self, is_sunk)`
+* `check_if_sunk(self)`
 
-    Returns True if every *Square* objects attributes *is_hit* are set to True, otherwise returns False.
+    Check if every *Square* object that *Ship* consists of has
+    *is_hit* attribute set to True, if that happens, *is_sunk* attribute
+    of *Ship* is marked as True
     Default value is False.
 
-* `__str__(self)`
+* `calculate_ending_point(self)`
 
-    Returns a formatted string (joined lists of squares that make a ship)
+    Basing on *Ship.starting_point* (tuple of 2 ints), calculates its ending
+    point and returns it
 
 
 __ocean.py__
