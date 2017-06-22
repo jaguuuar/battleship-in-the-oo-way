@@ -1,5 +1,6 @@
 from square import Square
 
+
 class Ship:
 
     ship_types = {'Carrier': 5, 'Battleship': 4, 'Cruiser': 3, 'Submarine': 3, 'Destroyer': 2}
@@ -15,16 +16,43 @@ class Ship:
         self.build_ship(self.size)
 
     def build_ship(self, size):
+        '''
+        Basing on provided size, construct a ship, by appending Square objects
+        to self.squares list
+
+        Parameters
+        ----------
+        size = int
+
+        Returns
+        -------
+        None
+
+        '''
         for i in range(size):
             square = Square(self, False)
             self.squares.append(square)
 
-    def check_if_sunk(self):
+    def check_if_sunk(self, size):
+        '''
+
+        Parameters
+        ----------
+        None
+        Returns
+        -------
+        boolean
+        '''
+        temp_list = []
         for square in self.squares:
-            if square.is_hit == False:
-                return False
+
+            if square.is_hit is False:
+                self.is_sunk = False
+
             else:
-                return True
+                temp_list.append('Hit')
+        if len(temp_list) == self.size:
+                self.is_sunk = True
 
     def calculate_ending_point(self):
         if self.is_vertical:

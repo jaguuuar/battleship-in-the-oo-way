@@ -139,15 +139,16 @@ otherwise contains False, default value is False
 
 __Instance methods__
 
-* ##### ` __init__(self, size, is_vertical, start_row, start_column) `
+* ##### ` __init__(self, ship_type, is_vertical, start_row, start_column, is_sunk) `
 
   Constructs a *Ship* object
 
 * `build_ship(self, size)`
 
-    Makes a string that simbolises a ship (based on provided size)
+    Basing on provided *size*, construct a ship, by appending *Square* objects
+    to *self.squares* list
 
-* `check_if_sunk(self, is_sunk)`
+* `check_if_sunk(self)`
 
     Returns True if every *Square* objects attributes *is_hit* are set to True, otherwise returns False.
     Default value is False.
