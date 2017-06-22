@@ -71,6 +71,7 @@ class Player:
         converted_coordinates = tuple of ints (2)
         '''
         row = coordinates[0]
+        col = coordinates[1]
 
         coordinates_values = {
                             'A': 0, 'B': 1, 'C': 2, 'D': 3,
