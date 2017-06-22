@@ -2,7 +2,7 @@ from square import Square
 
 class Ship:
 
-    ship_types = {'Carrier': 5, 'Battleship': 4, 'Cruiser': 3, 'Submarine': 3, 'Destroyer': 2}
+    ship_types = {'Carrier': 5, 'Battleship': 4}#, 'Cruiser': 3, 'Submarine': 3, 'Destroyer': 2}
 
     def __init__(self, ship_type, is_vertical, start_row, start_column, is_sunk=False):
         self.ship_type = ship_type
@@ -20,11 +20,12 @@ class Ship:
             self.squares.append(square)
 
     def check_if_sunk(self):
+        temp_list = []
         for square in self.squares:
-            if square.is_hit == False:
-                return False
-            else:
-                return True
+            if square.is_hit:
+                temp_list.append('Hit')
+        if len(temp_list) == self.size:
+                self.is_sunk = True
 
     def calculate_ending_point(self):
         if self.is_vertical:

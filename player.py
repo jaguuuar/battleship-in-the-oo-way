@@ -8,6 +8,7 @@ class Player:
         self.name = name
         self.is_winner = False
         self.ships = []
+        self.enemy_sunk_ships = 0
 
     def insert_ships(self, ocean):
 
@@ -61,3 +62,28 @@ class Player:
                 print("It's not a number!")
 
         return row, col
+        return row, col
+
+
+    def sunk_ships_count(self):
+        for ship in self.ships:
+            if ship.is_sunk == True:
+                self.enemy_sunk_ships += 1
+
+    def check_is_winner(self):
+        if self.enemy_sunk_ships == 2:
+            self.is_winner = True
+
+    def add_ship(self, ship):
+        self.ships.append(ship)
+
+    def remove_ship(self):
+        for ship in self.ships:
+            if ship.is_sunk:
+                self.ships.remove(ship)
+
+    def __str__(self):
+        if self.is_winner:
+            return "you win"
+        else:
+            return "try again"
