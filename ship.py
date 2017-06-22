@@ -2,7 +2,7 @@ from square import Square
 
 class Ship:
 
-    ship_types = {'Carrier': 5, 'Battleship': 4, 'Cruiser': 3, 'Submarine': 3, 'Destroyer': 2}
+    ship_types = {'Carrier': 5}#, 'Battleship': 4, 'Cruiser': 3, 'Submarine': 3, 'Destroyer': 2}
 
     def __init__(self, ship_type, is_vertical, start_row, start_column, is_sunk=False):
         self.ship_type = ship_type
@@ -37,11 +37,3 @@ class Ship:
 
 
         return ending_point
-
-
-
-    # def __str__(self):
-    #     xd = ''
-    #     for i in self.squares:
-    #         xd += str(i) + "|"
-    #     return xd

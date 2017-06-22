@@ -1,5 +1,6 @@
 from ship import Ship
 from square import Square
+from player import Player
 
 
 class Ocean:
@@ -103,7 +104,6 @@ class Ocean:
                 a = 1
 
         return True
-
 
 
     def make_hit(self, row, column):

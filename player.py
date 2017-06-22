@@ -1,4 +1,3 @@
-from ocean import Ocean
 from ship import Ship
 
 
@@ -18,7 +17,7 @@ class Player:
                 print(("Place {}, it has {} squares.").format(ship, size))
                 direction = self.get_ship_direction(ship)
                 coordinates = self.get_ship_coordinates()
-                converted_coordinates = convert_coordinates(coordinates)
+                converted_coordinates = self.convert_coordinates(coordinates)
                 ship_to_insert = Ship(ship, direction, converted_coordinates[0], converted_coordinates[1])
                 succesful_adding = ocean.insert_ship(ship_to_insert)
                 if succesful_adding:
