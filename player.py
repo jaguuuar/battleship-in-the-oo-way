@@ -17,8 +17,9 @@ class Player:
             while not succesful_adding:
                 print(("Place {}, it has {} squares.").format(ship, size))
                 direction = self.get_ship_direction(ship)
-                row, col = self.get_ship_coordinates()
-                ship_to_insert = Ship(ship, direction, row, col)
+                coordinates = self.get_ship_coordinates()
+                converted_coordinates = convert_coordinates(coordinates)
+                ship_to_insert = Ship(ship, direction, converted_coordinates[0], converted_coordinates[1])
                 succesful_adding = ocean.insert_ship(ship_to_insert)
                 if succesful_adding:
                     self.ships.append(ship_to_insert)
@@ -43,18 +44,13 @@ class Player:
         row = ''
         col = ''
 
-        coordinates_values = {
-                            'A': 0, 'B': 1, 'C': 2, 'D': 3,
-                            'E': 4, 'F': 5, 'G': 6,
-                            'H': 7, 'I': 8, 'J': 9
-                            }
+
 
         POSSIBLE_ROWS = ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J')
         POSSIBLE_COLUMNS = range(10)
 
         while row not in POSSIBLE_ROWS:
             row = input('Choose row (A - J): ').upper()
-        row = coordinates_values[row]
 
         while col not in POSSIBLE_COLUMNS:
             try:
@@ -62,13 +58,35 @@ class Player:
             except ValueError:
                 print("It's not a number!")
 
-        return row, col
-        return row, col
+        return (row, col)
+
+    def convert_coordinates(self, coordinates):
+        '''
+        Parameters
+        ----------
+        coordinates = tuple
+
+        Returns
+        -------
+        converted_coordinates = tuple of ints (2)
+        '''
+        row = coordinates[0]
+
+        coordinates_values = {
+                            'A': 0, 'B': 1, 'C': 2, 'D': 3,
+                            'E': 4, 'F': 5, 'G': 6,
+                            'H': 7, 'I': 8, 'J': 9
+                            }
+
+        row = coordinates_values[row]
+        converted_coordinates = (row, col)
+
+        return converted_coordinates
 
 
     def sunk_ships_count(self):
         for ship in self.ships:
-            if ship.is_sunk == True:
+            if ship.is_sunk:
                 self.enemy_sunk_ships += 1
 
     def check_is_winner(self):
