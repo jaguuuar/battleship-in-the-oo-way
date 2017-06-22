@@ -19,7 +19,8 @@ class Player:
                 row, col = self.get_ship_coordinates()
                 ship_to_insert = Ship(ship, direction, row, col)
                 succesful_adding = ocean.insert_ship(ship_to_insert)
-                self.ships.append(ship_to_insert)
+                if succesful_adding:
+                    self.ships.append(ship_to_insert)
                 print(ocean)
 
     def get_ship_direction(self, ship_name):
