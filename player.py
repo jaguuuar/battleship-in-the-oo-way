@@ -7,9 +7,7 @@ class Player:
 
     def __init__(self, name):
         self.name = name
-        self.is_winner = False
-        self.ships = []
-        self.enemy_sunk_ships = 0
+
 
     def insert_ships(self, ocean):
 
@@ -28,6 +26,7 @@ class Player:
                 os.system("clear")
                 print(ocean)
 
+
     def get_ship_direction(self, ship_name):
         possible_choices = ['V', 'H']
         direction_values = {'V': True, 'H': False}
@@ -43,11 +42,10 @@ class Player:
 
         return direction_values[direction]
 
+
     def get_ship_coordinates(self):
         row = ''
         col = ''
-
-
 
         POSSIBLE_ROWS = ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J')
         POSSIBLE_COLUMNS = range(10)
@@ -88,24 +86,8 @@ class Player:
         return converted_coordinates
 
 
-    def sunk_ships_count(self):
-
-        for ship in self.ships:
-            ship.check_if_sunk()
-            if ship.is_sunk:
-                self.enemy_sunk_ships += 1
-                self.ships.remove(ship)
-        return self.enemy_sunk_ships
-
-
-
-    def check_is_winner(self):
-        if self.enemy_sunk_ships == 5:
-            self.is_winner = True
-
-
     def add_ship(self, ship):
-        self.ships.append(ship)
+        return self.ocean.insert_ship(ship)
 
 
     def __str__(self):
