@@ -15,8 +15,8 @@ class Square:
         self.in_game_look = True
 
     def __str__(self):
-        # TODO:
         '''
+        During inserting *Ship* objects
         Returns 'X' if is_hit attribute of Square object is True,
         otherwise returns ' ' (empty string)
         '''

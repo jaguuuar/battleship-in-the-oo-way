@@ -9,6 +9,9 @@ class Ocean:
         Ocean.build_board(self)
 
     def build_board(self):
+        '''
+        Fills the self.board list with Square objects
+        '''
 
         board_row = []
 
@@ -20,8 +23,19 @@ class Ocean:
             self.board.append(board_row)
             board_row = []
 
-
     def insert_ship(self, ship):
+        '''
+        Checks if Ship object is able to be put on self.board,
+        and inserts it.
+
+        Parameters
+        ----------
+        ship = Ship class object
+
+        Returns
+        -------
+        boolean = True if Ship was inserted succesfully, otherwise False
+        '''
         ship_fits = self.check_if_fits(ship)
 
         ship_squares = ship.squares
@@ -46,8 +60,19 @@ class Ocean:
                     return False
             return True
 
-
     def check_if_fits(self, ship):
+        '''
+        Basing on Ship ending_point, checks if Ship would
+        fit on self.board
+
+        Parameters
+        ----------
+        ship - Ship class object
+
+        Returns
+        -------
+        boolean = True if Ship fits, otherwise False
+        '''
         if int(ship.ending_point[0]) > 9 or int(ship.ending_point[1]) > 9:
             print("Sadly, the ship won't fit here, place it again.")
             return False
