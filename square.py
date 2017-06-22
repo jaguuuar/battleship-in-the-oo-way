@@ -10,6 +10,7 @@ class Square:
         Marks attribute is_hit of Square object as True
         '''
         self.is_hit = True
+        return self.is_ship()
 
     def change_square_look(self):
         self.in_game_look = True

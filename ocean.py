@@ -132,7 +132,8 @@ class Ocean:
 
 
     def make_hit(self, row, column):
-        self.board[row][column].hit()
+        is_ship = self.board[row][column-1].hit()
+        return is_ship
 
     def __str__(self):
         string_to_return = ""
