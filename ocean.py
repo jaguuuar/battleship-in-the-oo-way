@@ -3,6 +3,8 @@ from square import Square
 
 
 class Ocean:
+    POSSIBLE_ROWS = ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J')
+    POSSIBLE_COLUMNS = range(10)
 
     def __init__(self):
         self.board = []
@@ -129,6 +131,26 @@ class Ocean:
 
         return True
 
+    def get_display_str_list(self, for_owner=True):
+        disp_list = []
+
+        label_vertical = "|   | " + " | ".join([str(x) for x in range(1,11)]) + " |"
+        line_between = "|" + "".join([ "+" if x%4 == 0  else "-" for x in range(1,len( label_vertical)-1)]) +"|"
+        border_str_body = "-" * (len(label_vertical)-2)
+        top_str = "/" + border_str_body + "\\"
+        bottom_str = "\\" + border_str_body + "/"
+        disp_list.append(top_str)
+        disp_list.append(label_vertical)
+        disp_list.append(line_between)
+
+        for i in range(len(self.board)):
+            temp_str = "| " + self.POSSIBLE_ROWS[i]
+            for square in self.board[i]:
+                temp_str +=  " | " + square.display(for_owner)
+            disp_list.append(temp_str +  "  |")
+            disp_list.append(line_between)
+        disp_list.append(bottom_str)
+        return disp_list
 
 
     def make_hit(self, row, column):
@@ -136,19 +158,4 @@ class Ocean:
         return is_ship
 
     def __str__(self):
-        string_to_return = ""
-
-        a = [ [str(Square) for Square in self.board[y]] for y in range(len(self.board))]
-        label_horizonal = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "h"]
-        label_vertical = "|   | " + " | ".join([str(x) for x in range(1,11)]) + " |"
-
-        joined_text = " | ".join(label_horizonal) + "   | "
-        line_between = "|" + "".join([ "+" if x%4 == 0  else "-" for x in range(1,len( joined_text)-1)]) +"|\n"
-        string_to_return += "-" * len(label_vertical) + "\n"
-        string_to_return += label_vertical + "\n"
-        string_to_return += line_between
-        for i in range(len(a)):
-            string_to_return += "| " + label_horizonal[i] + " | " + " | ".join(a[i]) + "  |\n"
-            string_to_return += line_between
-
-        return (string_to_return)
+        return "\n".join(self.get_display_str_list())

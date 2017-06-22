@@ -25,22 +25,26 @@ class Square:
         else:
             return False
 
+    def display(self, for_owner=True):
+        ship_char = "S"
+        if not for_owner:
+            ship_char = " "
+
+        if self.is_hit:
+            if self.ship is not None:
+                return 'X'
+            else:
+                return 'O'
+        else:
+            if self.ship is not None:
+                return ship_char
+            else:
+                return ' '
+
     def __str__(self):
         '''
         During inserting *Ship* objects
         Returns 'X' if is_hit attribute of Square object is True,
         otherwise returns ' ' (empty string)
         '''
-        if self.in_game_look:
-            if self.is_hit:
-                if self.ship is not None:
-                    return 'X'
-                else:
-                    return 'O'
-            else:
-                return ' '
-        else:
-            if self.ship is not None:
-                return 'X'
-            else:
-                return ' '
+        self.display()
