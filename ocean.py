@@ -8,6 +8,7 @@ class Ocean:
 
     def __init__(self):
         self.board = []
+        self.ships = []
         Ocean.build_board(self)
 
     def build_board(self):
@@ -49,6 +50,7 @@ class Ocean:
                     for i in range(ship.starting_point[0], ship.starting_point[0] + ship.size):
                         self.board[i][ship.starting_point[1]] = ship_squares[square_index]
                         square_index += 1
+                        self.ships.append(ship)
                 else:
                     return False
 
@@ -58,6 +60,7 @@ class Ocean:
                     for i in range(ship.starting_point[1], ship.starting_point[1] + ship.size):
                         self.board[ship.starting_point[0]][i] = ship_squares[square_index]
                         square_index += 1
+                        self.ships.append(ship)
                 else:
                     return False
             return True
