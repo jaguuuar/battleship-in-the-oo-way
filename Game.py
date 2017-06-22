@@ -69,6 +69,10 @@ def Game():
                 hit = game.board.make_hit(coordinates[0], coordinates[1])
                 os.system("clear")
                 print(game.board)
+        if(player1.is_winner):
+            print("{} win".format(name))
+        else:
+            print("{} win".format(name2))
 
 
 if __name__ == '__main__':
