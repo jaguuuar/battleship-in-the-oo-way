@@ -70,26 +70,19 @@ This is the file containing a logic of squares (single pieces of ship)
 
 __Instance Attributes__
 
-* `row`
-  - data: int
-  - description: row coordinate
-
-* `column`
-- data: int
-- description: column coordinate
-
 * `is_hit`
   - data: bool
   - description: contains True if square was hit, otherwise contains False
   Default value is False
 
-* `is_ship_part`
-- data: bool
-- description: contains True if square is a part of a ship, otherwise contains False (if is a part of board)
+* `ship`
+- data: string/None
+- description: contains ship's *name* if is a part of *Ship*, otherwise contains None
+    Default value is None.
 
 __Instance methods__
 
-* ##### ` __init__(self, row, column) `
+* ##### ` __init__(self, ship, is_hit) `
 
   Constructs a *Square* object
 
