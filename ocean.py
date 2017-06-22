@@ -8,6 +8,7 @@ class Ocean:
 
     def __init__(self):
         self.board = []
+        self.ships = []
         Ocean.build_board(self)
 
     def build_board(self):
@@ -60,6 +61,9 @@ class Ocean:
                         square_index += 1
                 else:
                     return False
+
+            self.ships.append(ship)
+
             return True
 
     def check_if_fits(self, ship):
@@ -124,7 +128,7 @@ class Ocean:
 
                     return False
                 elif self.board[index][check_to_col].ship is not None:
-                    
+
                     return False
             except IndexError:
                 a = 1
@@ -153,7 +157,7 @@ class Ocean:
         return disp_list
 
 
-def make_hit(self, row, column):
+    def make_hit(self, row, column):
         square = self.board[row][column - 1]
         is_ship = square.is_ship()
         ship = square.ship
