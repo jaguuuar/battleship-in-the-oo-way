@@ -22,7 +22,6 @@ def main():
         player.sunk_ships_count()
         print(player.ships)
         print(player.enemy_sunk_ships)
-        #player.remove_ship()
         player.check_is_winner()
         print(ocean)
     print(ocean)
