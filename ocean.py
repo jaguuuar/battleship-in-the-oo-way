@@ -1,5 +1,6 @@
 from ship import Ship
 from square import Square
+from player import Player
 
 
 class Ocean:
@@ -106,7 +107,9 @@ class Ocean:
 
 
 
-    def make_hit(self, row, column):
+    def make_hit(self, name):
+        print("Make a hit!")
+        row, column = Player(name).get_ship_coordinates()
         self.board[row][column].hit()
 
     def __str__(self):
