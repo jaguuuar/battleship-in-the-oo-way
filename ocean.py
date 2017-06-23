@@ -50,7 +50,6 @@ class Ocean:
                     for i in range(ship.starting_point[0], ship.starting_point[0] + ship.size):
                         self.board[i][ship.starting_point[1]] = ship_squares[square_index]
                         square_index += 1
-                        self.ships.append(ship)
                 else:
                     return False
 
@@ -60,9 +59,10 @@ class Ocean:
                     for i in range(ship.starting_point[1], ship.starting_point[1] + ship.size):
                         self.board[ship.starting_point[0]][i] = ship_squares[square_index]
                         square_index += 1
-                        self.ships.append(ship)
                 else:
                     return False
+
+            self.ships.append(ship)
             return True
 
     def check_if_fits(self, ship):
@@ -79,7 +79,7 @@ class Ocean:
         boolean = True if Ship fits, otherwise False
         '''
         if int(ship.ending_point[0]) > 9 or int(ship.ending_point[1]) > 9:
-            print("Sadly, the ship won't fit here, place it again.")
+
             return False
 
         return True
@@ -96,13 +96,13 @@ class Ocean:
         for index in range(check_from_col, check_to_col + 1):
             try:
                 if self.board[ship.starting_point[0]][index].ship is not None:
-                    print("You can't place a ship here, it touches other ship!")
+
                     return False
                 elif self.board[check_from_row][index].ship is not None:
-                    print("You can't place a ship here, it touches other ship!")
+
                     return False
                 elif self.board[check_to_row][index].ship is not None:
-                    print("You can't place a ship here, it touches other ship!")
+
                     return False
             except IndexError:
                 a=1
@@ -121,13 +121,13 @@ class Ocean:
         for index in range(check_from_row, check_to_row + 1):
             try:
                 if self.board[index][ship.starting_point[1]].ship is not None:
-                    print("Tu leży statek")
+
                     return False
                 elif self.board[index][check_from_col].ship is not None:
-                    print("Tu leży statek")
+
                     return False
                 elif self.board[index][check_to_col].ship is not None:
-                    print("Tu leży statek")
+
                     return False
             except IndexError:
                 a = 1
@@ -157,7 +157,15 @@ class Ocean:
 
 
     def make_hit(self, row, column):
-        is_ship = self.board[row][column-1].hit()
+        square = self.board[row][column]
+        is_ship = square.is_ship()
+        square.hit()
+
+        if is_ship:
+            ship = square.ship
+            ship.check_if_sunk()
+            if ship.is_sunk:
+                self.ships.remove(square.ship)
         return is_ship
 
     def __str__(self):
