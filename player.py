@@ -13,9 +13,13 @@ class Player:
     def add_ship(self, ship):
         return self.ocean.insert_ship(ship)
 
-    def hasLost(self):
+    def has_lost(self):
         if not self.ocean.ships:
             return True
+        return False
+
+    def take_damage(self, row, column):
+        return self.ocean.make_hit(row, column)
 
     def __str__(self):
         return "Player: " + self.name

@@ -63,7 +63,6 @@ class Ocean:
                     return False
 
             self.ships.append(ship)
-
             return True
 
     def check_if_fits(self, ship):
@@ -158,11 +157,15 @@ class Ocean:
 
 
     def make_hit(self, row, column):
-        square = self.board[row][column - 1]
+        square = self.board[row][column]
         is_ship = square.is_ship()
-        ship = square.ship
-        if is_ship and ship.is_sunk:
-            self.ships.remove(square.ship)
+        square.hit()
+
+        if is_ship:
+            ship = square.ship
+            ship.check_if_sunk()
+            if ship.is_sunk:
+                self.ships.remove(square.ship)
         return is_ship
 
     def __str__(self):
