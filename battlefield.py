@@ -5,6 +5,7 @@ from computer import Computer
 import random
 import os
 
+
 class BattleField:
 
     def __init__(self):
@@ -36,7 +37,6 @@ class BattleField:
 
         print(self.display_battlefield())
         print(self.current_player.name + " has won the game!")
-
 
     def play_turn(self):
         if isinstance(self.current_player, Computer):
@@ -97,7 +97,7 @@ class BattleField:
         if self.current_player == self.player_one:
             return self.player_two
         return self.player_one
-        
+
     def createHumanPlayer(self, player_number, debug=False):
         if not debug:
             name = input("\nName of player no.{}: ".format(player_number))
@@ -198,7 +198,7 @@ class BattleField:
         return converted_coordinates
 
     def display_battlefield(self, debug=False):
-        opponent =  self.get_opponent()
+        opponent = self.get_opponent()
         players_board = self.current_player.ocean.get_display_str_list()
         if not debug:
             opponent_board = opponent.ocean.get_display_str_list(False)

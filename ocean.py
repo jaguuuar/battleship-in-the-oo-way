@@ -135,6 +135,19 @@ class Ocean:
         return True
 
     def get_display_str_list(self, for_owner=True):
+        '''
+        Basing on 'for_owner' parameter, if is True, returns list of strings (containing board
+        with inserted, visible ships on it), otherwise the ships are hidden.
+
+        Parameters
+        ----------
+        for_owner = boolean
+
+        Returns
+        -------
+        disp_list = list of str
+
+        '''
         disp_list = []
 
         label_vertical = "|   | " + " | ".join([str(x) for x in range(1,11)]) + " |"
