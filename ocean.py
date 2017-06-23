@@ -3,9 +3,12 @@ from square import Square
 
 
 class Ocean:
+    POSSIBLE_ROWS = ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J')
+    POSSIBLE_COLUMNS = range(10)
 
     def __init__(self):
         self.board = []
+        self.ships = []
         Ocean.build_board(self)
 
     def build_board(self):
@@ -58,6 +61,8 @@ class Ocean:
                         square_index += 1
                 else:
                     return False
+
+            self.ships.append(ship)
             return True
 
     def check_if_fits(self, ship):
@@ -74,7 +79,7 @@ class Ocean:
         boolean = True if Ship fits, otherwise False
         '''
         if int(ship.ending_point[0]) > 9 or int(ship.ending_point[1]) > 9:
-            print("Sadly, the ship won't fit here, place it again.")
+
             return False
 
         return True
@@ -91,13 +96,13 @@ class Ocean:
         for index in range(check_from_col, check_to_col + 1):
             try:
                 if self.board[ship.starting_point[0]][index].ship is not None:
-                    print("You can't place a ship here, it touches other ship!")
+
                     return False
                 elif self.board[check_from_row][index].ship is not None:
-                    print("You can't place a ship here, it touches other ship!")
+
                     return False
                 elif self.board[check_to_row][index].ship is not None:
-                    print("You can't place a ship here, it touches other ship!")
+
                     return False
             except IndexError:
                 a=1
@@ -116,39 +121,52 @@ class Ocean:
         for index in range(check_from_row, check_to_row + 1):
             try:
                 if self.board[index][ship.starting_point[1]].ship is not None:
-                    print("Tu leży statek")
+
                     return False
                 elif self.board[index][check_from_col].ship is not None:
-                    print("Tu leży statek")
+
                     return False
                 elif self.board[index][check_to_col].ship is not None:
-                    print("Tu leży statek")
+
                     return False
             except IndexError:
                 a = 1
 
         return True
 
+    def get_display_str_list(self, for_owner=True):
+        disp_list = []
+
+        label_vertical = "|   | " + " | ".join([str(x) for x in range(1,11)]) + " |"
+        line_between = "|" + "".join([ "+" if x%4 == 0  else "-" for x in range(1,len( label_vertical)-1)]) +"|"
+        border_str_body = "-" * (len(label_vertical)-2)
+        top_str = "/" + border_str_body + "\\"
+        bottom_str = "\\" + border_str_body + "/"
+        disp_list.append(top_str)
+        disp_list.append(label_vertical)
+        disp_list.append(line_between)
+
+        for i in range(len(self.board)):
+            temp_str = "| " + self.POSSIBLE_ROWS[i]
+            for square in self.board[i]:
+                temp_str +=  " | " + square.display(for_owner)
+            disp_list.append(temp_str +  "  |")
+            disp_list.append(line_between)
+        disp_list.append(bottom_str)
+        return disp_list
 
 
     def make_hit(self, row, column):
-        is_ship = self.board[row][column-1].hit()
+        square = self.board[row][column]
+        is_ship = square.is_ship()
+        square.hit()
+
+        if is_ship:
+            ship = square.ship
+            ship.check_if_sunk()
+            if ship.is_sunk:
+                self.ships.remove(square.ship)
         return is_ship
 
     def __str__(self):
-        string_to_return = ""
-
-        a = [ [str(Square) for Square in self.board[y]] for y in range(len(self.board))]
-        label_horizonal = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "h"]
-        label_vertical = "|   | " + " | ".join([str(x) for x in range(1,11)]) + " |"
-
-        joined_text = " | ".join(label_horizonal) + "   | "
-        line_between = "|" + "".join([ "+" if x%4 == 0  else "-" for x in range(1,len( joined_text)-1)]) +"|\n"
-        string_to_return += "-" * len(label_vertical) + "\n"
-        string_to_return += label_vertical + "\n"
-        string_to_return += line_between
-        for i in range(len(a)):
-            string_to_return += "| " + label_horizonal[i] + " | " + " | ".join(a[i]) + "  |\n"
-            string_to_return += line_between
-
-        return (string_to_return)
+        return "\n".join(self.get_display_str_list())
